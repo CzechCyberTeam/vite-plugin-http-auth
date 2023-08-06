@@ -3,7 +3,7 @@ import auth from 'basic-auth';
 
 export default function vitePluginHttpBasicAuth(users: { username?: string, password: string }[],
                                                 config?: {realm?: string, useInServer?: boolean, useInPreview?: boolean}): PluginOption {
-  console.log(`Using vitePluginHttpAuth with ${users.length} users`)
+  console.log(`Using vite-plugin-http-basic-auth with ${users.length} users`)
 
   function authMiddleware(req, res, next) {
     const user = auth(req);
@@ -17,7 +17,7 @@ export default function vitePluginHttpBasicAuth(users: { username?: string, pass
   }
 
   return {
-    name: 'vite-plugin-http-auth',
+    name: 'vite-plugin-http-basic-auth',
     enforce: 'pre',
     apply: 'serve',
 

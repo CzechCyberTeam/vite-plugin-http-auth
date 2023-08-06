@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-http-basic-auth",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Vite plugin adding HTTP Basic Auth support",
   "repository": {
     "type": "git",
@@ -15,22 +15,29 @@
   "bugs": {
     "url": "https://github.com/CzechCyberTeam/vite-plugin-http-auth/issues"
   },
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc -p tsconfig.json"
+    "build": "unbuild"
   },
   "devDependencies": {
     "@types/node": "^20.4.8",
     "typescript": "^5.1.6",
-    "vite": "^4.4.8"
+    "vite": "^4.4.8",
+    "unbuild": "^0.6.0"
   },
   "dependencies": {
     "basic-auth": "^2.0.1"
   },
   "files": [
-    "lib"
+    "dist"
   ],
-  "type": "module"
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  }
 }

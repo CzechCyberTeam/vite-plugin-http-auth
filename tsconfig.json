@@ -7,7 +7,7 @@
     "declaration": true,
     "noUnusedLocals": true,
     "esModuleInterop": true,
-    "outDir": "lib",
+    "outDir": "dist",
     "lib": ["ESNext", "DOM"],
     "sourceMap": false,
     "noEmitOnError": true,
