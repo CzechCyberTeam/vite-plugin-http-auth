@@ -10,10 +10,12 @@ export default function vitePluginHttpBasicAuth(users: { username?: string, pass
     console.warn('[vite-plugin-http-basic-auth] No users defined for vite-plugin-http-basic-auth!')
   }
 
-  users.forEach((user, index) => {
+  users.filter((user, index) => {
     if (!user.username || !user.password) {
-      console.warn(`[vite-plugin-http-basic-auth] User on index ${index} does not have defined username and/or password!`)
+      console.warn(`[vite-plugin-http-basic-auth] User on index ${index} does not have defined username and/or password! Ignoring.`)
+      return false
     }
+    return true;
   })
 
   function authMiddleware(req, res, next) {
