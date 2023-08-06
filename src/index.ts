@@ -3,7 +3,18 @@ import auth from 'basic-auth';
 
 export default function vitePluginHttpBasicAuth(users: { username?: string, password: string }[],
                                                 config?: {realm?: string, useInServer?: boolean, useInPreview?: boolean}): PluginOption {
-  console.log(`Using vite-plugin-http-basic-auth with ${users.length} users`)
+  console.log(`[vite-plugin-http-basic-auth] Initializing with ${users.length} users`)
+
+  // Check if users are defined
+  if (!users || users.length === 0) {
+    console.warn('[vite-plugin-http-basic-auth] No users defined for vite-plugin-http-basic-auth!')
+  }
+
+  users.forEach((user, index) => {
+    if (!user.username || !user.password) {
+      console.warn(`[vite-plugin-http-basic-auth] User on index ${index} does not have defined username and/or password!`)
+    }
+  })
 
   function authMiddleware(req, res, next) {
     const user = auth(req);
